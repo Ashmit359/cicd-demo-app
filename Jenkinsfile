@@ -47,10 +47,10 @@ pipeline {
         stage('Update Helm values') {
             steps {
                 sh '''
-                    sed -i "s/tag:.*/tag: \\"$BUILD_TAG\\"/" helm/cicd-demo-app/values.yaml
+                    sed -i "s/tag:.*/tag: \\"$BUILD_TAG\\"/" helm/values.yaml
                     git config user.email "jenkins@local"
                     git config user.name "jenkins-bot"
-                    git add helm/cicd-demo-app/values.yaml
+                    git add helm/values.yaml
                     git commit -m "chore: bump image tag to $BUILD_TAG"
                     git push origin main
                 '''
